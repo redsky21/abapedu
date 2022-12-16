@@ -1,0 +1,63 @@
+@Metadata.layer: #CUSTOMER
+
+@UI: { 
+    headerInfo: { typeName:'Course', typeNamePlural:'Courses',
+                  title: { type: #STANDARD, value: 'CourseName' } //상세화면의 Header Title
+                }
+}
+annotate entity ZC_COURSE_04
+    with 
+{
+   @UI.facet: [  //Object PAnge 안에 Tab ( 상세화면 구성하는것)
+       {     
+            id: 'Course', purpose: #STANDARD, type:#IDENTIFICATION_REFERENCE,
+            label: 'Course Details', position: 10
+       }
+   ]
+   @UI.hidden: true
+   CourseUuid;
+    
+   @UI: { lineItem: [{ position: 10, label: 'Course ID'}
+   ,{ type: #FOR_ACTION, dataAction: 'set_block' , label:'Blocking' }
+   ], //Grid
+          identification: [{ position: 10, label: 'Course ID' }], //상세화면
+          selectionField: [{position: 10 }] //검색조건 순서
+   } 
+   @EndUserText.label: 'Course ID'
+   CourseId;
+  
+   @UI: { lineItem: [{ position: 20, label: 'Course Name' }],
+          identification: [{ position: 20, label: 'Course Name' }],
+          selectionField: [{position: 20 }]
+   }   
+   @EndUserText.label: 'Course Name'
+   CourseName;
+
+   @UI: { lineItem: [{ position: 30}],
+          identification: [{ position: 30}],
+          selectionField: [{position: 30 }]
+   }       
+   Country;
+
+   
+   @UI: { identification: [{ position: 50, label: 'Price'}]
+   }        
+   Price;
+   
+   @UI: { identification: [{ position: 60, label: 'Currency'}]
+   }        
+   CurrencyCode;
+   
+   @UI: { lineItem: [{ position: 70, label: 'Blocked'}],
+          identification: [{ position: 70, label: 'Blocked'}]
+   }   
+   Blocked;
+   
+       
+   @UI.hidden: true   
+   LastChangedAt;
+   
+   @UI.hidden: true
+   LastChangedBy; 
+    
+}

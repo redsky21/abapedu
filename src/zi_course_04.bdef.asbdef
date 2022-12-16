@@ -1,0 +1,37 @@
+managed implementation in class zbp_i_course_04 unique;
+
+define behavior for zi_course_04 //alias <alias_name>
+persistent table zcourse_04
+lock master
+authorization master ( instance )
+etag master LastChangedAt
+{
+  create;
+  update;
+  delete;
+  action set_block;
+  field ( readonly ) Country;
+  field ( readonly : update ) CourseId;
+  field ( mandatory : create ) CourseId;
+  field ( numbering : managed, readonly )CourseUuid;
+  validation checkRequired on save {create; update;}
+  determination setCountry on save {create;}
+  mapping for zcourse_04 corresponding
+  {
+
+    CourseId = course_id;
+    Blocked = blocked;
+    Country = country;
+    CourseName = course_name;
+    CourseUuid = course_uuid;
+    CurrencyCode = currency_code;
+    LastChangedAt = last_changed_at;
+    LastChangedBy = last_changed_by;
+    Price = price;
+
+
+
+  }
+
+
+}
